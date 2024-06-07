@@ -58,17 +58,7 @@ try:
         # st.write(value)
         x, y = value["x"], value["y"]
 
-    if 'file_name' not in st.session_state:
-        st.session_state.file_name = None
 
-        # Check if the uploaded file is new
-    if st.session_state.file_name != new_file_name:
-        st.session_state.file_name = new_file_name
-        # Clear dimensions and temp list when a new file is uploaded
-        st.session_state.dimension = []
-        st.session_state.temp = []
-
-        st.write(f"Zeichnungs- Nr.: {new_file_name}")
 
     dimension = []
     if "bounds" in st.session_state:
