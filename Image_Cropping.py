@@ -51,7 +51,7 @@ pdf_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 page_number = st.sidebar.number_input("Enter the page number:", min_value=1, format="%d", value=1)
 
 if pdf_file is not None:
-    file_name = pdf_file.name
+    file_name = pdf_file.name.rsplit('.', 1)[0]
     st.session_state.file_name = file_name
     st.write(f"Uploaded file name: {file_name}")
 

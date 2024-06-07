@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="PDF file name extraction">
-      <change beforePath="$PROJECT_DIR$/Image_Cropping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image_Cropping.py" afterDir="false" />
-    </list>
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="PDF file name extraction" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717767591395</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="PDF file name extraction">
+      <created>1717767729455</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717767729455</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
