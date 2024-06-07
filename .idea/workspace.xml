@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="st.data_editor(df, num_rows=&quot;dynamic&quot;)">
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Commented out # Define a function to classify text based on aspect ratio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image_Cropping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image_Cropping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +98,21 @@
       <option name="project" value="LOCAL" />
       <updated>1717764086062</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="st.data_editor(df, num_rows=&quot;dynamic&quot;)">
+      <created>1717764716799</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717764716799</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Commented out # Define a function to classify text based on aspect ratio">
+      <created>1717764773098</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717764773098</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +146,7 @@
     <MESSAGE value="Added(2) UI files" />
     <MESSAGE value="Added(3) UI files" />
     <MESSAGE value="st.data_editor(df, num_rows=&quot;dynamic&quot;)" />
-    <option name="LAST_COMMIT_MESSAGE" value="st.data_editor(df, num_rows=&quot;dynamic&quot;)" />
+    <MESSAGE value="Commented out # Define a function to classify text based on aspect ratio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commented out # Define a function to classify text based on aspect ratio" />
   </component>
 </project>

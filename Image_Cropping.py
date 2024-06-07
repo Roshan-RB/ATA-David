@@ -223,7 +223,7 @@ if st.session_state.pil_image:
             st.image(st.session_state.image_with_boxes, use_column_width='auto')
 
         st.write('')
-        st.write('Rotated Image with OCR Bounding_Boxes')
+        #st.write('Rotated Image with OCR Bounding_Boxes')
         # st.image(rotated_image_with_boxes, use_column_width= "auto")
 
         # To get the text from the bounding boxes
@@ -235,7 +235,7 @@ if st.session_state.pil_image:
             ocr_data.append((idx + 1, tex))
 
         ocr_df = pd.DataFrame(ocr_data, columns=None)
-        st.write('Extracted text:')
+        st.write('Go to Image Click to get your texts!')
 
 # ---------------------------------------------------------------------------------------------------------
 
