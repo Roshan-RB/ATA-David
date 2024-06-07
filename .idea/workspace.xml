@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="PDF file name extraction">
-      <change beforePath="$PROJECT_DIR$/pages/image_click.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/image_click.py" afterDir="false" />
-    </list>
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="st.session_state.dimension = []" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,7 +158,21 @@
       <option name="project" value="LOCAL" />
       <updated>1717768237779</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Zeichnungs -Nr update">
+      <created>1717768568766</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717768568766</updated>
+    </task>
+    <task id="LOCAL-00019" summary="st.session_state.dimension = []">
+      <created>1717769067031</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717769067031</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +210,8 @@
     <MESSAGE value="Commented out write statements" />
     <MESSAGE value="Lines 99 to 102" />
     <MESSAGE value="PDF file name extraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="PDF file name extraction" />
+    <MESSAGE value="Zeichnungs -Nr update" />
+    <MESSAGE value="st.session_state.dimension = []" />
+    <option name="LAST_COMMIT_MESSAGE" value="st.session_state.dimension = []" />
   </component>
 </project>
