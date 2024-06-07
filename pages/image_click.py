@@ -96,11 +96,6 @@ try:
             # st.write('DataFrame of Selected Dimensions:')
             st.data_editor(df, num_rows="dynamic")
 
-        if st.button('Mark as completed'):
-            # Clear the DataFrame
-            st.session_state.dimension = []
-            st.success("All dimensions marked as completed and cleared.")
-
 except Exception as e:
     print(e)
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Commented out write statements">
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Lines 99 to 102">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/image_click.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/image_click.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717765575188</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Lines 99 to 102">
+      <created>1717766653871</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717766653871</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +169,7 @@
     <MESSAGE value="st.data_editor(df, num_rows=&quot;dynamic&quot;)" />
     <MESSAGE value="Commented out # Define a function to classify text based on aspect ratio" />
     <MESSAGE value="Commented out write statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commented out write statements" />
+    <MESSAGE value="Lines 99 to 102" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lines 99 to 102" />
   </component>
 </project>

@@ -50,6 +50,10 @@ if 'pdf_document' not in st.session_state:
 pdf_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 page_number = st.sidebar.number_input("Enter the page number:", min_value=1, format="%d", value=1)
 
+if pdf_file is not None:
+    file_name = pdf_file.name
+    st.write(f"Uploaded file name: {file_name}")
+
 if pdf_file:
     st.session_state.pdf_file = pdf_file
 
