@@ -4,4 +4,6 @@ PyMuPDF==1.24.0
 easyocr
 pandas
 numpy
-
+matplotlib
+firebase-admin
+streamlit-option-menu
