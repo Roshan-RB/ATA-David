@@ -69,6 +69,9 @@ try:
         if "dimension" not in st.session_state:
             st.session_state.dimension = []
 
+        if "file_name" in st.session_state:
+            file_name = st.session_state.file_name
+
         for bound in bounds:
             box = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
             if value is not None:
@@ -83,13 +86,16 @@ try:
                     st.session_state.dimension.append(st.session_state.temp[:])
                     st.session_state.temp = []
 
-                    #st.write('You have selected the text    : ', text)
+                    # st.write('You have selected the text    : ', text)
 
 
         else:
             st.warning('Click on the required dimension to select')
 
         # Output the final dimension list and convert to DataFrame
+        if st.session_state.file_name:
+            st.write(f" Zeichnungs- Nr.: {file_name}")
+
         if st.session_state.dimension:
             # st.write('Selected dimension pairs: ', st.session_state.dimension)
             df = pd.DataFrame(st.session_state.dimension, columns=['Width', 'Height'])
