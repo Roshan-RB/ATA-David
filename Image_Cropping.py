@@ -53,7 +53,7 @@ page_number = st.sidebar.number_input("Enter the page number:", min_value=1, for
 if pdf_file is not None:
     file_name = pdf_file.name.rsplit('.', 1)[0]
     st.session_state.file_name = file_name
-    st.write(f"Uploaded file name: {file_name}")
+    st.write(f" Zeichnungs- Nr.: {file_name}")
 
 if pdf_file:
     st.session_state.pdf_file = pdf_file
