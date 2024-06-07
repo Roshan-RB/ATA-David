@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Commented out # Define a function to classify text based on aspect ratio">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Commented out write statements">
       <change beforePath="$PROJECT_DIR$/Image_Cropping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image_Cropping.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717764773098</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Commented out write statements">
+      <created>1717765231788</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717765231788</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +153,7 @@
     <MESSAGE value="Added(3) UI files" />
     <MESSAGE value="st.data_editor(df, num_rows=&quot;dynamic&quot;)" />
     <MESSAGE value="Commented out # Define a function to classify text based on aspect ratio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commented out # Define a function to classify text based on aspect ratio" />
+    <MESSAGE value="Commented out write statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commented out write statements" />
   </component>
 </project>

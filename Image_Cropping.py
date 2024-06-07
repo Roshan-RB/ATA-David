@@ -218,12 +218,12 @@ if st.session_state.pil_image:
         rotated_image_with_boxes = draw_boxes(rotated_image.copy(), rotated_bounds)
 
         st.write('')
-        st.write('Cropped Image with OCR Bounding_Boxes')
+        # st.write('Cropped Image with OCR Bounding_Boxes')
         if 'image_with_boxes' in st.session_state:
             st.image(st.session_state.image_with_boxes, use_column_width='auto')
 
         st.write('')
-        #st.write('Rotated Image with OCR Bounding_Boxes')
+        # st.write('Rotated Image with OCR Bounding_Boxes')
         # st.image(rotated_image_with_boxes, use_column_width= "auto")
 
         # To get the text from the bounding boxes
