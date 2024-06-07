@@ -103,7 +103,7 @@ if st.session_state.pdf_file is not None:
                 st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Cropped Image**</span>', unsafe_allow_html=True)
                 st.image(st.session_state.pil_image, use_column_width='auto')
                 width, height = st.session_state.pil_image.size
-                st.write("Image Size (Width x Height):", width, "x", height)
+                # st.write("Image Size (Width x Height):", width, "x", height)
 
                  
 
@@ -116,7 +116,7 @@ if st.session_state.pdf_file is not None:
                         img_bytes = img_file.read()
 
                     # Provide download button for the cropped image
-                    st.download_button("Download Cropped Image", img_bytes, file_name="cropped_image.png", mime="image/png")
+                    # st.download_button("Download Cropped Image", img_bytes, file_name="cropped_image.png", mime="image/png")
 
             except Exception as e:
                 st.error(f"Error: {e}")
@@ -166,7 +166,7 @@ if st.session_state.pil_image:
     #st.image(Processed_Image, use_column_width='auto')
 
     n_width, n_height = Processed_Image.size
-    st.write("Image Size (Width x Height):", n_width, "x", n_height)
+    #st.write("Image Size (Width x Height):", n_width, "x", n_height)
 
 
     rotated_image = rotate_image(Processed_Image, -90)
@@ -258,42 +258,42 @@ if st.session_state.pil_image:
 #---------------------------------------------------------------------------------------------------------
 
     # Define a function to classify text based on aspect ratio
-    def classify_text(bounds, threshold=1.5):
-        vertical_text = []
-        horizontal_text = []
-        for bound in bounds:
-            p0, p1, p2, p3 = bound[0]
-            # Calculate width and height of bounding box
-            width = ((p1[0] - p0[0])**2 + (p1[1] - p0[1])**2)**0.5
-            height = ((p3[0] - p0[0])**2 + (p3[1] - p0[1])**2)**0.5
-            # Calculate aspect ratio
-            aspect_ratio = height / width
-            # Classify based on aspect ratio
-            if aspect_ratio > threshold:
-                vertical_text.append(bound)
-            else:
-                horizontal_text.append(bound)
-        return vertical_text, horizontal_text
-
-    # Classify text into vertical and horizontal categories
-    vertical_text, horizontal_text = classify_text(bounds)
-
-    col1, col2 = st.columns(2, gap="small")
-    with col1:
-        horiz_text = st.button('Get only Horizontal text')
-
-    with col2:
-        vert_text = st.button('Get only Vertical text')
-
-    if horiz_text:
-        # Draw bounding boxes for vertical text
-        im_with_horiz_boxes = draw_boxes(Processed_Image.copy(), horizontal_text, color='green')
-        st.image(im_with_horiz_boxes, use_column_width=None)
-
-    if vert_text:
-        # Draw bounding boxes for vertical text
-        im_with_vert_boxes = draw_boxes(Processed_Image.copy(), vertical_text, color='blue')
-        st.image(im_with_vert_boxes, use_column_width=None)
+    #def classify_text(bounds, threshold=1.5):
+    #     vertical_text = []
+    #     horizontal_text = []
+    #     for bound in bounds:
+    #         p0, p1, p2, p3 = bound[0]
+    #         # Calculate width and height of bounding box
+    #         width = ((p1[0] - p0[0])**2 + (p1[1] - p0[1])**2)**0.5
+    #         height = ((p3[0] - p0[0])**2 + (p3[1] - p0[1])**2)**0.5
+    #         # Calculate aspect ratio
+    #         aspect_ratio = height / width
+    #         # Classify based on aspect ratio
+    #         if aspect_ratio > threshold:
+    #             vertical_text.append(bound)
+    #         else:
+    #             horizontal_text.append(bound)
+    #     return vertical_text, horizontal_text
+    #
+    # # Classify text into vertical and horizontal categories
+    # vertical_text, horizontal_text = classify_text(bounds)
+    #
+    # col1, col2 = st.columns(2, gap="small")
+    # with col1:
+    #     horiz_text = st.button('Get only Horizontal text')
+    #
+    # with col2:
+    #     vert_text = st.button('Get only Vertical text')
+    #
+    # if horiz_text:
+    #     # Draw bounding boxes for vertical text
+    #     im_with_horiz_boxes = draw_boxes(Processed_Image.copy(), horizontal_text, color='green')
+    #     st.image(im_with_horiz_boxes, use_column_width=None)
+    #
+    # if vert_text:
+    #     # Draw bounding boxes for vertical text
+    #     im_with_vert_boxes = draw_boxes(Processed_Image.copy(), vertical_text, color='blue')
+    #     st.image(im_with_vert_boxes, use_column_width=None)
 
 
     #-----------------------------------------------------------------------------------------------------------
