@@ -80,8 +80,6 @@ try:
         if "dimension" not in st.session_state:
             st.session_state.dimension = []
 
-        
-
         for bound in bounds :
             box = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
             if value is not None:

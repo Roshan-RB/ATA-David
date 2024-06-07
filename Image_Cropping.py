@@ -147,6 +147,8 @@ if st.session_state.pil_image:
 
     # Convert the image to grayscale
     gray = cv2.cvtColor(image_np, cv2.COLOR_BGR2GRAY)
+    
+
     #st.image( gray, caption='grayscale_image', use_column_width='never')
 
     # Get the dimensions of the grayscale image
@@ -158,9 +160,18 @@ if st.session_state.pil_image:
 
     # Resize the grayscale image
     resized_gray = cv2.resize(gray, (new_width, new_height))
+    thresholded_resized_image = cv2.adaptiveThreshold(resized_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+
+
+
+    st.image(thresholded_resized_image)
+    # Gaussian blur
+    #blur = cv2.GaussianBlur(equ, (5, 5), 1)
+
 
     # Convert NumPy array back to PIL Image
-    Processed_Image = Image.fromarray(resized_gray)
+    Processed_Image = Image.fromarray(thresholded_resized_image)
+    #st.image(Processed_Image)
     st.write('')
     #st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Processed Image**</span>', unsafe_allow_html=True)
     #st.image(Processed_Image, use_column_width='auto')
@@ -188,8 +199,16 @@ if st.session_state.pil_image:
     rotation_list = [270]
 
 
+
     # Doing OCR. Get bounding boxes.
-    bounds = reader.readtext(img_byte_arr, rotation_info = rotation_list)
+    bounds = reader.readtext(img_byte_arr,
+                            allowlist="0123456789,",
+                            blocklist="qwertzuioplkjhgfdsayxcvbnm:.;-_#'+*?=)(/&%$§![]",
+                            rotation_info=rotation_list,
+                            add_margin = 0.2)
+    #st.write(bounds)
+    
+
     if bounds not in st.session_state:
         st.session_state.bounds = bounds
     #st.write(st.session_state)
@@ -224,6 +243,7 @@ if st.session_state.pil_image:
 
         image_with_boxes = draw_boxes(Processed_Image.copy(), bounds)
         print(image_with_boxes.size)
+        #st.image(image_with_boxes)
         st.session_state.image_with_boxes = image_with_boxes
         rotated_image_with_boxes = draw_boxes(rotated_image.copy(), rotated_bounds)
 
