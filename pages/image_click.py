@@ -29,9 +29,15 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 
-def get_collection_names():
-    collections = db.collections()
-    return [collection.id for collection in collections]
+def fetch_collection_data(collection_name):
+    if collection_name:
+        collection_ref = db.collection(collection_name)
+        docs = collection_ref.stream()  # Get all documents in the collection
+        data = [doc.to_dict() for doc in docs]  # Convert documents to dictionary
+        return data
+    else:
+        return []
+
 
 
 collection_name = st.sidebar.selectbox("Select Collection", [""] + get_collection_names())
@@ -148,3 +154,12 @@ if st.button("Upload to Database"):
             st.warning("No file name found for the collection!")
     else:
         st.warning("No data to upload!")
+
+if collection_name:
+    st.subheader(f"Data from Collection: '{collection_name}'")
+    collection_data = fetch_collection_data(collection_name)
+    if collection_data:
+        df = pd.DataFrame(collection_data)
+        st.dataframe(df)
+    else:
+        st.write("No data found in the selected collection.")
