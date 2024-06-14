@@ -52,12 +52,12 @@ if 'file_name' not in st.session_state:
 pdf_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 page_number = st.sidebar.number_input("Enter the page number:", min_value=1, format="%d", value=1)
 
-if pdf_file is not None:
-    file_name = pdf_file.name.rsplit('.', 1)[0]
-    st.write(f" Zeichnungs- Nr.: {file_name}")
-
 if pdf_file:
+    if 'pdf_file' in st.session_state and st.session_state.pdf_file != pdf_file:
+        st.session_state.dimension = []
     st.session_state.pdf_file = pdf_file
+    file_name = pdf_file.name.rsplit('.', 1)[0]
+    st.write(f"Zeichnungs- Nr.: {file_name}")
 
 
 if st.session_state.pdf_file is not None:

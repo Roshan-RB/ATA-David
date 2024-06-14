@@ -106,4 +106,5 @@ except Exception as e:
     print(e)
 
     st.warning(
-        'Please select extract in the main page to detect the text, then come back here to select the required dimension text!')
+        'Please select extract in the main page to detect the text, then come back here to select the required '
+        'dimension text!')

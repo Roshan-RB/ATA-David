@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="st.session_state.dimension = []">
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="removed the new_file lines">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Image_Cropping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Image_Cropping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/image_click.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/image_click.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1717769286397</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="lines 61 - 71">
+      <created>1717769890079</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717769890079</updated>
+    </task>
+    <task id="LOCAL-00022" summary="removed the new_file lines">
+      <created>1717770075953</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717770075953</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +236,8 @@
     <MESSAGE value="PDF file name extraction" />
     <MESSAGE value="Zeichnungs -Nr update" />
     <MESSAGE value="st.session_state.dimension = []" />
-    <option name="LAST_COMMIT_MESSAGE" value="st.session_state.dimension = []" />
+    <MESSAGE value="lines 61 - 71" />
+    <MESSAGE value="removed the new_file lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed the new_file lines" />
   </component>
 </project>
