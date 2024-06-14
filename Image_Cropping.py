@@ -52,7 +52,7 @@ if 'file_name' not in st.session_state:
 pdf_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 page_number = st.sidebar.number_input("Enter the page number:", min_value=1, format="%d", value=1)
 
-file_name = ""
+# file_name = ""
 
 if pdf_file:
     if 'pdf_file' in st.session_state and st.session_state.pdf_file != pdf_file:
