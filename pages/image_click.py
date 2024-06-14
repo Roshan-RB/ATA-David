@@ -121,15 +121,18 @@ if st.button("Upload to Database"):
         # Convert dataframe to a list of dictionaries
         data_to_upload = df.to_dict(orient='records')
 
-        # Use the file name as the collection name
+        # Use the file name as the collection name if it's defined
         if file_name:
             collection_name = file_name
             # Reference to the Firestore collection
             collection_ref = db.collection(collection_name)
-        # Upload each row to the Firestore collection
+
+            # Upload each row to the Firestore collection
             for record in data_to_upload:
                 collection_ref.add(record)
 
-        st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
+            st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
+        else:
+            st.warning("No file name found for the collection!")
     else:
         st.warning("No data to upload!")
