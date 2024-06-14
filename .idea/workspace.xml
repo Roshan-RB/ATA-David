@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Dropdown collection name and fetching the data.">
       <change beforePath="$PROJECT_DIR$/pages/image_click.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/image_click.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -280,7 +279,21 @@
       <option name="project" value="LOCAL" />
       <updated>1718367977235</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Dropdown collection name">
+      <created>1718369984848</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1718369984848</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Dropdown collection name and fetching the data.">
+      <created>1718370188057</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718370188057</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -327,6 +340,8 @@
     <MESSAGE value="new_file_name variable updated." />
     <MESSAGE value="Error for file_name" />
     <MESSAGE value="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)" />
+    <MESSAGE value="Dropdown collection name" />
+    <MESSAGE value="Dropdown collection name and fetching the data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Dropdown collection name and fetching the data." />
   </component>
 </project>

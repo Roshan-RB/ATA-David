@@ -39,7 +39,6 @@ def fetch_collection_data(collection_name):
         return []
 
 
-
 collection_name = st.sidebar.selectbox("Select Collection", [""] + get_collection_names())
 
 from streamlit_image_coordinates import streamlit_image_coordinates
@@ -154,6 +153,19 @@ if st.button("Upload to Database"):
             st.warning("No file name found for the collection!")
     else:
         st.warning("No data to upload!")
+
+
+def fetch_collection_data(collection_name):
+    if collection_name:
+        collection_ref = db.collection(collection_name)
+        docs = collection_ref.stream()  # Get all documents in the collection
+        data = [doc.to_dict() for doc in docs]  # Convert documents to dictionary
+        return data
+    else:
+        return []
+
+
+collection_name = st.sidebar.selectbox("Select Collection", [""] + get_collection_names())
 
 if collection_name:
     st.subheader(f"Data from Collection: '{collection_name}'")
