@@ -15,11 +15,18 @@ import cv2
 import time
 import base64
 import io
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 st.set_page_config(layout="wide")
 
 # Testing
 
+if not firebase_admin._apps:
+    cred = credentials.Certificate('serviceAccountkey.json')
+    firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 from streamlit_image_coordinates import streamlit_image_coordinates
 
@@ -108,3 +115,22 @@ except Exception as e:
     st.warning(
         'Please select extract in the main page to detect the text, then come back here to select the required '
         'dimension text!')
+
+if st.button("Upload to Database"):
+    if st.session_state.dimension:
+        # Convert dataframe to a list of dictionaries
+        data_to_upload = df.to_dict(orient='records')
+
+        # Use the file name as the collection name
+        collection_name = file_name
+
+        # Reference to the Firestore collection
+        collection_ref = db.collection(collection_name)
+
+        # Upload each row to the Firestore collection
+        for record in data_to_upload:
+            collection_ref.add(record)
+
+        st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
+    else:
+        st.warning("No data to upload!")
