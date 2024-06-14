@@ -57,6 +57,7 @@ if pdf_file:
         st.session_state.dimension = []
     st.session_state.pdf_file = pdf_file
     file_name = pdf_file.name.rsplit('.', 1)[0]
+    new_file = file_name
     st.write(f"Zeichnungs- Nr.: {file_name}")
 
 
