@@ -65,8 +65,6 @@ try:
         # st.write(value)
         x, y = value["x"], value["y"]
 
-
-
     dimension = []
     if "bounds" in st.session_state:
         bounds = st.session_state.bounds
@@ -117,11 +115,8 @@ except Exception as e:
         'dimension text!')
 
 if pdf_file:
-    st.session_state.pdf_file = pdf_file
-    # Extract and display the file name without the extension
-    st.session_state.file_name = pdf_file.name.rsplit('.', 1)[0]
+    file_name = st.session_state.file_name
     st.write(f"Zeichnungs- Nr.: {st.session_state.file_name}")
-
 
 # Button to upload data to Firebase
 if st.button("Upload to Database"):
