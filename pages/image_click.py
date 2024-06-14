@@ -79,6 +79,9 @@ try:
         if "file_name" in st.session_state:
             file_name = st.session_state.file_name
 
+        if "ZeichnungsNr" in st.session_state:
+            ZeichnungsNr = st.session_state.ZeichnungsNr
+
         for bound in bounds:
             box = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
             if value is not None:
@@ -114,7 +117,7 @@ except Exception as e:
         'Please select extract in the main page to detect the text, then come back here to select the required '
         'dimension text!')
 
-st.write(f"Zeichnungs- Nr.: {st.session_state.file_name}")
+st.write(f"Zeichnungs- Nr.: {st.session_state.ZeichnungsNr}")
 
 # Button to upload data to Firebase
 if st.button("Upload to Database"):
@@ -123,8 +126,8 @@ if st.button("Upload to Database"):
         data_to_upload = df.to_dict(orient='records')
 
         # Use the file name as the collection name if it's defined
-        if 'file_name' in st.session_state and st.session_state.file_name:
-            collection_name = st.session_state.file_name
+        if 'ZeichnungsNr' in st.session_state and st.session_state.ZeichnungsNr:
+            collection_name = st.session_state.ZeichnungsNr
             # Reference to the Firestore collection
             collection_ref = db.collection(collection_name)
 

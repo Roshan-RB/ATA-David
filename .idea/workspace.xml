@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Error for file_name">
-      <change beforePath="$PROJECT_DIR$/pages/image_click.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/image_click.py" afterDir="false" />
-    </list>
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -265,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718367345105</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)">
+      <created>1718367800716</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1718367800716</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -311,6 +316,7 @@
     <MESSAGE value="Upload to Database" />
     <MESSAGE value="new_file_name variable updated." />
     <MESSAGE value="Error for file_name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error for file_name" />
+    <MESSAGE value="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ZeichnungsNr = st.session_state.file_name&#10;st.write(f&quot;Zeichnungs- Nr.: {ZeichnungsNr}&quot;)" />
   </component>
 </project>

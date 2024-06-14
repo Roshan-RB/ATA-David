@@ -62,7 +62,7 @@ if pdf_file:
     # Extract and display the file name without the extension
     st.session_state.file_name = pdf_file.name.rsplit('.', 1)[0]
     ZeichnungsNr = st.session_state.file_name
-
+    st.session_state.ZeichnungsNr = ZeichnungsNr
     st.write(f"Zeichnungs- Nr.: {ZeichnungsNr}")
 
 
