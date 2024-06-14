@@ -55,11 +55,13 @@ page_number = st.sidebar.number_input("Enter the page number:", min_value=1, for
 # file_name = ""
 
 if pdf_file:
+    # Reset dimensions and file_name when a new file is uploaded
     if 'pdf_file' in st.session_state and st.session_state.pdf_file != pdf_file:
         st.session_state.dimension = []
     st.session_state.pdf_file = pdf_file
-    file_name = pdf_file.name.rsplit('.', 1)[0]
-    st.write(f"Zeichnungs- Nr.: {file_name}")
+    # Extract and display the file name without the extension
+    st.session_state.file_name = pdf_file.name.rsplit('.', 1)[0]
+    st.write(f"Zeichnungs- Nr.: {st.session_state.file_name}")
 
 
 if st.session_state.pdf_file is not None:

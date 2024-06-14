@@ -116,13 +116,14 @@ except Exception as e:
         'Please select extract in the main page to detect the text, then come back here to select the required '
         'dimension text!')
 
+# Button to upload data to Firebase
 if st.button("Upload to Database"):
     if st.session_state.dimension:
         # Convert dataframe to a list of dictionaries
         data_to_upload = df.to_dict(orient='records')
 
         # Use the file name as the collection name if it's defined
-        if 'file_name' in st.session_state:
+        if 'file_name' in st.session_state and st.session_state.file_name:
             collection_name = st.session_state.file_name
             # Reference to the Firestore collection
             collection_ref = db.collection(collection_name)
