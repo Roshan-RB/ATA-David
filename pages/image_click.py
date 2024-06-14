@@ -28,6 +28,14 @@ if not firebase_admin._apps:
 
 db = firestore.client()
 
+
+def get_collection_names():
+    collections = db.collections()
+    return [collection.id for collection in collections]
+
+
+collection_name = st.sidebar.selectbox("Select Collection", [""] + get_collection_names())
+
 from streamlit_image_coordinates import streamlit_image_coordinates
 
 try:
