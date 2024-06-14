@@ -122,8 +122,8 @@ if st.button("Upload to Database"):
         data_to_upload = df.to_dict(orient='records')
 
         # Use the file name as the collection name if it's defined
-        if file_name:
-            collection_name = file_name
+        if 'file_name' in st.session_state:
+            collection_name = st.session_state.file_name
             # Reference to the Firestore collection
             collection_ref = db.collection(collection_name)
 
