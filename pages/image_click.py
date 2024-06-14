@@ -114,9 +114,7 @@ except Exception as e:
         'Please select extract in the main page to detect the text, then come back here to select the required '
         'dimension text!')
 
-if pdf_file:
-    file_name = st.session_state.file_name
-    st.write(f"Zeichnungs- Nr.: {st.session_state.file_name}")
+st.write(f"Zeichnungs- Nr.: {st.session_state.file_name}")
 
 # Button to upload data to Firebase
 if st.button("Upload to Database"):
