@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="Dropdown collection name and fetching the data.">
-      <change beforePath="$PROJECT_DIR$/pages/image_click.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/image_click.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +293,28 @@
       <option name="project" value="LOCAL" />
       <updated>1718370188057</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Dropdown collection name and fetching the data.">
+      <created>1718370292182</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1718370292182</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Dropdown collection name and fetching the data.">
+      <created>1718370369405</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718370369405</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Dropdown collection name and fetching the data.">
+      <created>1718370513842</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1718370513842</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
