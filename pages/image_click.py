@@ -122,14 +122,13 @@ if st.button("Upload to Database"):
         data_to_upload = df.to_dict(orient='records')
 
         # Use the file name as the collection name
-        collection_name = new_file_name
-
-        # Reference to the Firestore collection
-        collection_ref = db.collection(collection_name)
-
+        if file_name:
+            collection_name = file_name
+            # Reference to the Firestore collection
+            collection_ref = db.collection(collection_name)
         # Upload each row to the Firestore collection
-        for record in data_to_upload:
-            collection_ref.add(record)
+            for record in data_to_upload:
+                collection_ref.add(record)
 
         st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
     else:
