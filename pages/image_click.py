@@ -114,7 +114,7 @@ try:
 
         if st.session_state.dimension:
             # st.write('Selected dimension pairs: ', st.session_state.dimension)
-            df = pd.DataFrame(st.session_state.dimension, columns=['Width', 'Height'])
+            df = pd.DataFrame(st.session_state.dimension, columns=['Part name', 'Width', 'Height'])
             # st.write('DataFrame of Selected Dimensions:')
             st.data_editor(df, num_rows="dynamic")
 
