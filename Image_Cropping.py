@@ -24,6 +24,8 @@ st.write(fa_css, unsafe_allow_html=True)
 
 reader = easyocr.Reader(['en'])
 
+#Testing 20.06
+
 st.title("Dimension Detection!")
 # Initialize session state variables
 if 'pdf_file' not in st.session_state:
