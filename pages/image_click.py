@@ -1,4 +1,3 @@
-
 import streamlit as st
 from streamlit_cropperjs import st_cropperjs
 from streamlit_image_coordinates import streamlit_image_coordinates
@@ -16,18 +15,28 @@ import cv2
 import time
 import base64
 import io
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 st.set_page_config(layout="wide")
 
+# Testing
 
-#Testing
+if not firebase_admin._apps:
+    cred = credentials.Certificate('serviceAccountkey.json')
+    firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 
+def get_collection_names():
+    collections = db.collections()
+    return [collection.id for collection in collections]
 
 
+collection_name = st.sidebar.selectbox("Select Collection", [""] + get_collection_names())
 
 from streamlit_image_coordinates import streamlit_image_coordinates
-
 
 try:
     # Check if the image is in session state
@@ -44,30 +53,25 @@ try:
 
     scale = float(scale_str)
 
-    #st.write("My favorite color is", scale)
+    # st.write("My favorite color is", scale)
     if image_with_boxes is not None:
-
         width, height = image_with_boxes.size
-        value = streamlit_image_coordinates(image_with_boxes, width = (width/scale))
+        value = streamlit_image_coordinates(image_with_boxes, width=(width / scale))
 
 
-
-    
-        
-
-    def point_in_box(x,y,box,scale):
-        p0,p1,p2,p3 = box
-        min_x = min(p0[0], p1[0], p2[0], p3[0])/scale
-        max_x = max(p0[0], p1[0], p2[0], p3[0])/scale
-        min_y = min(p0[1], p1[1], p2[1], p3[1])/scale
-        max_y = max(p0[1], p1[1], p2[1], p3[1])/scale
+    def point_in_box(x, y, box, scale):
+        p0, p1, p2, p3 = box
+        min_x = min(p0[0], p1[0], p2[0], p3[0]) / scale
+        max_x = max(p0[0], p1[0], p2[0], p3[0]) / scale
+        min_y = min(p0[1], p1[1], p2[1], p3[1]) / scale
+        max_y = max(p0[1], p1[1], p2[1], p3[1]) / scale
         return min_x <= x <= max_x and min_y <= y <= max_y
 
-    #value = None   
-    if value:
-        #st.write(value)
-        x,y = value["x"], value["y"]
 
+    # value = None
+    if value:
+        # st.write(value)
+        x, y = value["x"], value["y"]
 
     dimension = []
     if "bounds" in st.session_state:
@@ -80,37 +84,80 @@ try:
         if "dimension" not in st.session_state:
             st.session_state.dimension = []
 
-        
+        if "file_name" in st.session_state:
+            file_name = st.session_state.file_name
 
-        for bound in bounds :
+        if "ZeichnungsNr" in st.session_state:
+            ZeichnungsNr = st.session_state.ZeichnungsNr
+
+        for bound in bounds:
             box = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
             if value is not None:
-                if point_in_box(x,y,box,scale):
+                if point_in_box(x, y, box, scale):
 
                     text = bound[1]
                     if len(st.session_state.temp) < 3:
                         st.session_state.temp.append(text)
-                
+
                 # When we have two dimensions, add the pair to the main list
                 if len(st.session_state.temp) == 2:
                     st.session_state.dimension.append(st.session_state.temp[:])
                     st.session_state.temp = []
 
+                    # st.write('You have selected the text    : ', text)
 
-                    st.write('You have selected the text    : ', text)
-        
-                  
+
         else:
             st.warning('Click on the required dimension to select')
 
         # Output the final dimension list and convert to DataFrame
+
+        # Testing if the code is updated.
+
         if st.session_state.dimension:
-            #st.write('Selected dimension pairs: ', st.session_state.dimension)
+            # st.write('Selected dimension pairs: ', st.session_state.dimension)
             df = pd.DataFrame(st.session_state.dimension, columns=['Width', 'Height'])
-            #st.write('DataFrame of Selected Dimensions:')
-            st.data_editor(df)
+            # st.write('DataFrame of Selected Dimensions:')
+            st.data_editor(df, num_rows="dynamic")
 
 except Exception as e:
     print(e)
 
-    st.warning('Please select extract in the main page to detect the text, then come back here to select the required dimension text!')
+    st.warning(
+        'Please select extract in the main page to detect the text, then come back here to select the required '
+        'dimension text!')
+
+# st.write(f"Zeichnungs- Nr.: {st.session_state.ZeichnungsNr}")
+
+# Button to upload data to Firebase
+if st.button("Upload to Database"):
+    if st.session_state.dimension:
+        # Convert dataframe to a list of dictionaries
+        data_to_upload = df.to_dict(orient='records')
+
+        # Use the file name as the collection name if it's defined
+        if 'ZeichnungsNr' in st.session_state and st.session_state.ZeichnungsNr:
+            collection_name = st.session_state.ZeichnungsNr
+            # Reference to the Firestore collection
+            collection_ref = db.collection(collection_name)
+
+            # Upload each row to the Firestore collection
+            for record in data_to_upload:
+                collection_ref.add(record)
+
+            st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
+        else:
+            st.warning("No file name found for the collection!")
+    else:
+        st.warning("No data to upload!")
+
+if collection_name:
+    st.subheader(f"Data from Collection: '{collection_name}'")
+    collection_ref = db.collection(collection_name)
+    docs = collection_ref.stream()  # Get all documents in the collection
+    collection_data = [doc.to_dict() for doc in docs]  # Convert documents to dictionary
+    if collection_data:
+        df = pd.DataFrame(collection_data)
+        st.dataframe(df)
+    else:
+        st.write("No data found in the selected collection.")
