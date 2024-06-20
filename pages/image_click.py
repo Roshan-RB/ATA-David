@@ -39,7 +39,7 @@ def rotated_coordinates(x, y, first_image_height):
     new_y = x
     return new_x, new_y
 	
-	try:
+try:
     # Check if the image is in session state
     if 'image_with_boxes' in st.session_state:
         # Retrieve the image from session state
@@ -56,8 +56,8 @@ def rotated_coordinates(x, y, first_image_height):
         "Select scaling factor to downsize the image",
         options=["1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7","7.5", "8", "8.5","9","9.5","10"])
     scale = float(scale_str)
-	
-	if image_with_boxes is not None:
+    
+    if image_with_boxes is not None:
         #print('I entered loop 1')
         width, height = image_with_boxes.size
         new_width_scaled = height/scale
@@ -70,10 +70,10 @@ def rotated_coordinates(x, y, first_image_height):
         pass
     else:
         st.write("No image found in session state.")
-		
-		def point_in_box(x,y,box,scale):
+        
+    def point_in_box(x,y,box,scale):
         p0,p1,p2,p3 = box
-  
+
         min_x = min(p0[0], p1[0], p2[0], p3[0])/scale -20
         max_x = max(p0[0], p1[0], p2[0], p3[0])/scale +20
         min_y = min(p0[1], p1[1], p2[1], p3[1])/scale -20
@@ -87,13 +87,13 @@ def rotated_coordinates(x, y, first_image_height):
         #st.write(x,y)
         x1,y1 = rotated_coordinates(x,y,new_width_scaled)
         #st.write(x1,y1) 
-		
-		try:
+        
+    try:
 
         dimension = []
         global text1 
         text1 = 0
-  
+
         if "bounds" in st.session_state:
             bounds = st.session_state.bounds
             # Initialize temp and dimension lists
@@ -119,7 +119,7 @@ def rotated_coordinates(x, y, first_image_height):
             if "dimension_rotated" not in st.session_state:
                 st.session_state.dimension_rotated = []
             for bound in bounds_rotated :
-				box_rotated = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
+                box_rotated = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
                 if value is not None:
                     #st.write('i am trying to read rotated image')
                     if point_in_box(x1,y1,box_rotated,scale):
@@ -153,8 +153,8 @@ def rotated_coordinates(x, y, first_image_height):
             #st.write(st.session_state.dimension)           
             st.warning('Please click in the following order: Red , Blue')
             st.warning('Please click only on dimensions and not on special characters')
-			
-			if st.session_state.dimension:
+            
+            if st.session_state.dimension:
                 #st.write('Selected dimension pairs: ', st.session_state.dimension)
                 df = pd.DataFrame(st.session_state.dimension, columns=['Width', 'Height'])
                 #st.write('DataFrame of Selected Dimensions:')
@@ -164,7 +164,7 @@ def rotated_coordinates(x, y, first_image_height):
 
 
     except Exception as e:
-  
+
         print('The error for non rotated image is:',str(e))
 except Exception as e:
     print(e)
