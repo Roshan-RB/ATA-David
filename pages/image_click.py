@@ -112,6 +112,8 @@ try:
 
         # Output the final dimension list and convert to DataFrame
 
+        # Testing if the code is updated.
+
         if st.session_state.dimension:
             # st.write('Selected dimension pairs: ', st.session_state.dimension)
             df = pd.DataFrame(st.session_state.dimension, columns=['Width', 'Height'])
