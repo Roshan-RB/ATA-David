@@ -18,6 +18,25 @@ import io
 
 st.set_page_config(layout="wide")
 
+
+#Testing 20.06
+
+# Testing
+
+if not firebase_admin._apps:
+    cred = credentials.Certificate('serviceAccountkey.json')
+    firebase_admin.initialize_app(cred)
+
+db = firestore.client()
+
+
+def get_collection_names():
+    collections = db.collections()
+    return [collection.id for collection in collections]
+
+
+collection_name = st.sidebar.selectbox("Select Collection", [""] + get_collection_names())
+
 from streamlit_image_coordinates import streamlit_image_coordinates
 
 import math
@@ -169,7 +188,45 @@ try:
 except Exception as e:
     print(e)
 
-    st.warning('Please select extract in the main page to detect the text, then come back here to select the required dimension text!')
+    st.warning(
+        'Please select extract in the main page to detect the text, then come back here to select the required '
+        'dimension text!')
+
+# st.write(f"Zeichnungs- Nr.: {st.session_state.ZeichnungsNr}")
+
+# Button to upload data to Firebase
+if st.button("Upload to Database"):
+    if st.session_state.dimension:
+        # Convert dataframe to a list of dictionaries
+        data_to_upload = df.to_dict(orient='records')
+
+        # Use the file name as the collection name if it's defined
+        if 'ZeichnungsNr' in st.session_state and st.session_state.ZeichnungsNr:
+            collection_name = st.session_state.ZeichnungsNr
+            # Reference to the Firestore collection
+            collection_ref = db.collection(collection_name)
+
+            # Upload each row to the Firestore collection
+            for record in data_to_upload:
+                collection_ref.add(record)
+
+            st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
+        else:
+            st.warning("No file name found for the collection!")
+    else:
+        st.warning("No data to upload!")
+
+if collection_name:
+    st.subheader(f"Data from Collection: '{collection_name}'")
+    collection_ref = db.collection(collection_name)
+    docs = collection_ref.stream()  # Get all documents in the collection
+    collection_data = [doc.to_dict() for doc in docs]  # Convert documents to dictionary
+    if collection_data:
+        df = pd.DataFrame(collection_data)
+        st.dataframe(df)
+    else:
+        st.write("No data found in the selected collection.")
+    
 			
 			
-                
+
