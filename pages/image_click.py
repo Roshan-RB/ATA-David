@@ -111,9 +111,6 @@ try:
     #value = None   
     if value:
         point = value["x"], value["y"]
-        if point not in st.session_state["points"]:
-            st.session_state["points"].append(point)
-            st.rerun()
         #st.write(value)
         #print('I entered loop 3')
         x,y = value["x"], value["y"]
@@ -277,4 +274,3 @@ if collection_name:
     
 			
 			
-
