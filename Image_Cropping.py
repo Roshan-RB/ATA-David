@@ -60,10 +60,21 @@ if 'image_with_boxes_rotated' not in st.session_state:
     st.session_state.image_with_boxes_rotated  = None
 
 
+
 pdf_file = st.sidebar.file_uploader("Upload a PDF file", type="pdf")
 page_number = st.sidebar.number_input("Enter the page number:", min_value=1, format="%d", value=1)
 
-
+if pdf_file:
+    # Reset dimensions and file_name when a new file is uploaded
+    if 'pdf_file' in st.session_state and st.session_state.pdf_file != pdf_file:
+        st.session_state.dimension = []
+    st.session_state.pdf_file = pdf_file
+    # Extract and display the file name without the extension
+    st.session_state.file_name = pdf_file.name.rsplit('.', 1)[0]
+    ZeichnungsNr = st.session_state.file_name
+    st.session_state.ZeichnungsNr = ZeichnungsNr
+    st.write(f"Zeichnungs- Nr.: {ZeichnungsNr}")
+    
 
 def preprocess(img):
      # Convert the image to grayscale
