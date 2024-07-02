@@ -1,12 +1,17 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+import warnings
 
 # Import other page scripts
 from pages import General_Information, Crop_Assist, Dimension_Manager
 
+
 def main():
-    query_params = st.experimental_get_query_params()
-    page = query_params.get("page", ["home"])[0]
+    #with warnings.catch_warnings():
+      #  warnings.simplefilter("ignore")
+      #  query_params = st.experimental_get_query_params()
+
+    # page = query_params.get("page", ["home"])[0]
 
     st.sidebar.image('logo_ata.png', use_column_width=True)
 
@@ -38,6 +43,7 @@ def main():
         Crop_Assist.main()
     elif selected == "Dimension Manager":
         Dimension_Manager.main()
+
 
 if __name__ == "__main__":
     main()

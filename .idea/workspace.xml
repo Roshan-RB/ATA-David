@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="df = pd.DataFrame(st.session_state.dimension,columns=['Width', 'Height'])">
+    <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="st.query_params">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sign_In.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sign_In.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_register.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Dimension_Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Dimension_Manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Home.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Home.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718716995157</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="st.query_params">
+      <created>1719929065873</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1719929065873</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -393,6 +403,7 @@
     <MESSAGE value="# st.write(f&quot;Zeichnungs- Nr.: {st.session_state.ZeichnungsNr}&quot;)" />
     <MESSAGE value="df = pd.DataFrame(st.session_state.dimension,columns=['Part name', 'Width', 'Height'])" />
     <MESSAGE value="df = pd.DataFrame(st.session_state.dimension,columns=['Width', 'Height'])" />
-    <option name="LAST_COMMIT_MESSAGE" value="df = pd.DataFrame(st.session_state.dimension,columns=['Width', 'Height'])" />
+    <MESSAGE value="st.query_params" />
+    <option name="LAST_COMMIT_MESSAGE" value="st.query_params" />
   </component>
 </project>

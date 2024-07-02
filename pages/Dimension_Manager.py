@@ -20,7 +20,7 @@ from firebase_admin import credentials, firestore
 import re
 
 
-st.set_page_config(layout="wide")
+#st.set_page_config(layout="wide")
 
 
 #Testing 20.06
