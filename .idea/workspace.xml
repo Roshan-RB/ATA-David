@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d2c422fb-7152-432e-b6f4-0473c37b752e" name="Changes" comment="df = pd.DataFrame(st.session_state.dimension,columns=['Width', 'Height'])">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login_register.py" beforeDir="false" afterPath="$PROJECT_DIR$/login_register.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

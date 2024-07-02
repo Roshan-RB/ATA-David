@@ -22,6 +22,7 @@ if "logged_in" not in st.session_state:
 if "user" not in st.session_state:
     st.session_state.user = None
 
+
 def login_user(email, password):
     payload = {
         "email": email,
@@ -39,6 +40,7 @@ def login_user(email, password):
     else:
         return False
 
+
 def register_user(email, password):
     payload = {
         "email": email,
@@ -52,14 +54,16 @@ def register_user(email, password):
         st.error(f"Registration failed: {response.json()}")  # Print detailed error response
         return False
 
+
 def redirect_to_home():
     # Redirect to Home page by setting query parameters
-    st.experimental_set_query_params(page="home")
+    st.query_params(page="home")
+
 
 def login_app():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
-        
+
     if not st.session_state.logged_in:
         st.title("Login or Register")
 
@@ -85,4 +89,4 @@ def login_app():
                 else:
                     st.error("Registration failed")
 
-   # menu()  # Render the dynamic menu!
+# menu()  # Render the dynamic menu!
