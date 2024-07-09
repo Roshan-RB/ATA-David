@@ -1,12 +1,13 @@
 import streamlit as st
 #from menu import menu
+import warnings
 
-#menu()
-# Retrieve query parameters
-query_params = st.experimental_get_query_params()
+print(st.query_params.get_all("http://localhost:8501"))
+
+
 
 # Check if the 'page' parameter is set to 'home'
-if query_params.get("page") == ["home"]:
+if st.query_params.get_all == []:
     # Load the Home page content
     from pages import Home
     Home.main()  # Assuming you have a `main()` function in Home.py

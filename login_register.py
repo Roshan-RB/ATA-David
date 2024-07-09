@@ -1,6 +1,12 @@
 import streamlit as st
 from firebase_admin import auth, credentials, initialize_app
 import requests
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
+from streamlit_option_menu import option_menu
+
+from pages import General_Information, Crop_Assist, Dimension_Manager
+
 
 # Initialize Firebase app if not already initialized
 try:
@@ -22,6 +28,29 @@ if "logged_in" not in st.session_state:
 if "user" not in st.session_state:
     st.session_state.user = None
 
+def validate(auth_token):
+    """
+    Validate method queries the Google OAuth2 API to fetch the user info.
+    """
+    try:
+        # Specify a clock skew allowance in seconds
+        clock_skew_in_seconds = 10
+
+        # Create a request object
+        request = google_requests.Request()
+
+        # Verify the OAuth2 token
+        idinfo = id_token.verify_oauth2_token(auth_token, request, clock_skew_in_seconds=clock_skew_in_seconds)
+
+        # Check if the issuer is Google
+        if 'accounts.google.com' in idinfo['iss'] or 'https://accounts.google.com' in idinfo['iss']:
+            return idinfo
+
+    except Exception as e:
+        # Log the exception if needed
+        print(f"An error occurred: {e}")
+        return "The token is either invalid or has expired"
+
 def login_user(email, password):
     payload = {
         "email": email,
@@ -32,7 +61,8 @@ def login_user(email, password):
     if response.status_code == 200:
         data = response.json()
         id_token = data["idToken"]
-        user_info = auth.verify_id_token(id_token)
+        user_info = validate(id_token)
+
         st.session_state.user = user_info
         st.session_state.logged_in = True
         return True
@@ -52,15 +82,44 @@ def register_user(email, password):
         st.error(f"Registration failed: {response.json()}")  # Print detailed error response
         return False
 
-def redirect_to_home():
-    # Redirect to Home page by setting query parameters
-    st.experimental_set_query_params(page="home")
-
 def login_app():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
-        
-    if not st.session_state.logged_in:
+
+    if st.session_state.logged_in:
+        st.sidebar.image('logo_ata.png', use_column_width=True)
+
+        with st.sidebar:
+            selected = option_menu(
+                menu_title="Main Menu",
+                options=["Home", "General Information", "Crop Assist", "Dimension Manager"],
+                icons=["house", "info", "crop", "dashboard"],
+                menu_icon="cast",
+                default_index=0,
+            )
+
+        if selected == "Home":
+            st.markdown("## 👋 Welcome to the Dimension Detection tool!")
+            st.markdown("Developed by the Team Quadratech")
+            st.markdown("The app is still under development.")
+            st.markdown("""
+                    ### Select on the left panel what you want to explore:
+
+                    - With 🔭 General info, you will have a short description of what this tool can do and how to use it.
+
+                    - With 📈 CropAssist, you will be able to Upload the drawings and get the dimensions.
+
+                    - With 🗺️ DimensionManager, you will be able to get all the detected Dimension organized into the corresponding lengths and widths.
+                """)
+        elif selected == "General Information":
+            General_Information.main()
+        elif selected == "Crop Assist":
+            Crop_Assist.main()
+        elif selected == "Dimension Manager":
+            Dimension_Manager.main()
+
+    # Add more home page content here
+    else:
         st.title("Login or Register")
 
         tab1, tab2 = st.tabs(["Login", "Register"])
@@ -70,8 +129,7 @@ def login_app():
             password = st.text_input("Password", type="password")
             if st.button("Login"):
                 if login_user(email, password):
-                    st.success("Logged in successfully!")
-                    redirect_to_home()
+                    st.rerun()  # Rerun the app to go to the home page
                 else:
                     st.error("Invalid email or password")
 
@@ -81,8 +139,10 @@ def login_app():
             if st.button("Register"):
                 if register_user(new_email, new_password):
                     st.success("Registered and logged in successfully!")
-                    redirect_to_home()
+                    st.rerun()  # Rerun the app to go to the home page
                 else:
                     st.error("Registration failed")
 
-   # menu()  # Render the dynamic menu!
+# Entry point for the app
+if __name__ == "__main__":
+    login_app()
