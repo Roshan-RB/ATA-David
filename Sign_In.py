@@ -1,8 +1,10 @@
 import streamlit as st
+
 #from menu import menu
 import warnings
+st.set_page_config(layout="wide")
 
-print(st.query_params.get_all("http://localhost:8501"))
+st.query_params.get_all("http://localhost:8501")
 
 
 
