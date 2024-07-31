@@ -4,6 +4,7 @@ import streamlit as st
 import warnings
 st.set_page_config(layout="wide")
 
+# Testing 
 st.query_params.get_all("http://localhost:8501")
 
 
