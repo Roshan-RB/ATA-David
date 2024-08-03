@@ -24,6 +24,7 @@ import re
 
 
 #Testing 20.06
+#st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Crop Assist**</span>', unsafe_allow_html=True)
 
 # Testing
 def main():
@@ -44,6 +45,15 @@ def main():
 	from streamlit_image_coordinates import streamlit_image_coordinates
 	
 	import math
+
+	fa_css = '''
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+			<i class="fa-solid fa-bars";></i>
+			''' 
+	st.write(fa_css, unsafe_allow_html=True)
+
+	st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Dimension Manager**</span>', unsafe_allow_html=True)
+
 	
 	def rotated_coordinates(x, y, first_image_height):
 		"""
@@ -82,9 +92,12 @@ def main():
 				ZeichnungsNr = st.session_state.ZeichnungsNr
 	
 		scale_str = st.select_slider(
-			"Select scaling factor to downsize the image",
+			"Use the slider to adjust the image size to your preference",
 			options=["1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7","7.5", "8", "8.5","9","9.5","10"])
 		scale = float(scale_str)
+
+		st.warning('Click in this order: Red, then Blue')
+		st.warning('Click only on dimensions, avoiding special characters')
 		
 		if image_with_boxes is not None:
 			#print('I entered loop 1')
@@ -92,13 +105,13 @@ def main():
 			new_width_scaled = height/scale
 			value = streamlit_image_coordinates(image_with_boxes, width = (width/scale))
 		else:
-			st.write("No image found in session state.")
+			st.write("Cropped image not found")
 		
 		#st.write("My favorite color is", scale)
 		if image_with_boxes_rotated is not None:
 			pass
 		else:
-			st.write("No image found in session state.")
+			st.write("Cropped image not found")
 			
 		def point_in_box(x,y,box,scale):
 			p0,p1,p2,p3 = box
@@ -207,8 +220,7 @@ def main():
 					st.session_state.dimension.append(st.session_state.temp[:])
 					st.session_state.temp = []
 				#st.write(st.session_state.dimension)           
-				st.warning('Please click in the following order: Red , Blue')
-				st.warning('Please click only on dimensions and not on special characters')
+				
 
 				
 				if st.session_state.dimension:
