@@ -7,7 +7,34 @@ from streamlit_option_menu import option_menu
 
 from pages import General_Information, Crop_Assist, Dimension_Manager
 
-logo_path = 'Quadratech.jpg'
+# logo_path = "https://github.com/Roshan-RB/ATA-David/blob/niharika/logo_ata.png"
+st.sidebar.image('logo_ata.png', use_column_width=True)
+for _ in range(22):
+    st.sidebar.write(' ')
+st.sidebar.image('quadratechlogo.png', width=300)
+
+# st.markdown(
+#    """
+#    <style>
+#    .logo-container {
+#        position: absolute;
+#        top: 0;
+#        left: 0;
+#    }
+#    </style>
+#    """,
+#   unsafe_allow_html=True,
+# )
+
+# Display logo
+# st.markdown(
+#   f"""
+#   <div class="logo-container">
+#       <img src="{logo_path}" width="100"/>
+#   </div>
+#   """,
+#   unsafe_allow_html=True,
+# )
 # Initialize Firebase app if not already initialized
 try:
     cred = credentials.Certificate('ata-project-a5bd3-b43dda61efbe.json')
@@ -132,13 +159,17 @@ def login_app():
         st.title("Welcome to ATA!")
         st.markdown("Please log in or register to access the app")
 
-        # st.image(logo_path, icon_image=None, width=300)
+        # st.sidebar.image('Quadratech.png', use_column_width=True)
 
         tab1, tab2 = st.tabs(["Login", "Register"])
 
         with tab1:
             email = st.text_input("Email")
             password = st.text_input("Password", type="password")
+            st.sidebar.image('logo_ata.png', use_column_width=True)
+            for _ in range(22):
+                st.sidebar.write(' ')
+            st.sidebar.image('quadratechlogo.png', width=300)
             if st.button("Login"):
                 if login_user(email, password):
                     st.rerun()  # Rerun the app to go to the home page
@@ -148,6 +179,10 @@ def login_app():
         with tab2:
             new_email = st.text_input("New Email")
             new_password = st.text_input("New Password", type="password")
+            st.sidebar.image('logo_ata.png', use_column_width=True)
+            for _ in range(22):
+                st.sidebar.write(' ')
+            st.sidebar.image('quadratechlogo.png', width=300)
             if st.button("Register"):
                 if register_user(new_email, new_password):
                     st.success("Registered and logged in successfully!")
