@@ -110,9 +110,8 @@ def main():
                 st.session_state.image_bytes = image_bytes
 
                 # Display the PDF page
-                st.markdown(
-                    f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**PDF**</span>',
-                    unsafe_allow_html=True)
+
+                st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Crop Assist**</span>', unsafe_allow_html=True)
                 st.image(st.session_state.image_bytes, use_column_width=True, caption=f"Page {page_number}")
 
                 # Use cropper to select and crop a part of the image only if the page number changes
@@ -127,7 +126,7 @@ def main():
                 st.session_state.cropped_image = cropped_image
                 with st.spinner("Loading the cropped image..."):
                     time.sleep(5)
-                st.success("You can extract the text now !")
+                st.success("Image cropped successfully, You can proceed to detect the dimensions in the cropped image!")
                 try:
                     # Convert cropped image to PIL Image
                     pil_image = Image.open(BytesIO(st.session_state.cropped_image))
@@ -161,7 +160,8 @@ def main():
         # st.error(f"Error during cleanup: {e}")
 
     else:
-        st.write("Upload a PDF file using the file uploader above.")
+
+        st.write("Upload a PDF file !")
 
     if st.session_state.pil_image:
 
@@ -287,12 +287,11 @@ def main():
 
         if bounds_rotated not in st.session_state:
             st.session_state.bounds_rotated = bounds_rotated
+  
+        if st.button('Detect the Dimensions'):
+            st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**OCR (Optical Character Recognition)**</span>', unsafe_allow_html=True)
+            with st.spinner('Detecting text...'):
 
-        if st.button('Extract_text'):
-            st.markdown(
-                f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**OCR**</span>',
-                unsafe_allow_html=True)
-            with st.spinner('Extracting text...'):
                 time.sleep(8)
 
             image_with_boxes = draw_boxes_horizontal(Processed_Image.copy(), bounds)
@@ -314,6 +313,7 @@ def main():
 
             st.session_state.image_with_boxes_rotated = image_with_boxes_rotated
 
+            st.success("All dimensions successfully detected!  \nYou can now select Dimension Manager on your left sidebar to extract the dimensions")
 
 if __name__ == "__main__":
     main()

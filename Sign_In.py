@@ -8,6 +8,7 @@ st.set_page_config(layout="wide")
 # Testing 
 st.query_params.get_all("http://localhost:8501")
 
+
 # Check if the 'page' parameter is set to 'home'
 if st.query_params.get_all == []:
     # Load the Home page content
