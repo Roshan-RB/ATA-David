@@ -7,11 +7,7 @@ from streamlit_option_menu import option_menu
 
 from pages import General_Information, Crop_Assist, Dimension_Manager
 
-# logo_path = "https://github.com/Roshan-RB/ATA-David/blob/niharika/logo_ata.png"
-st.sidebar.image('logo_ata.png', use_column_width=True)
-for _ in range(22):
-    st.sidebar.write(' ')
-st.sidebar.image('quadratechlogo.png', width=300)
+
 
 # st.markdown(
 #    """
