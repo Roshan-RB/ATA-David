@@ -154,7 +154,10 @@ def login_app():
     else:
         st.title("Welcome to ATA!")
         st.markdown("Please log in or register to access the app")
-
+        st.sidebar.image('logo_ata.png', use_column_width=True)
+        for _ in range(22):
+            st.sidebar.write(' ')
+        st.sidebar.image('quadratechlogo.png', width=300)
         # st.sidebar.image('Quadratech.png', use_column_width=True)
 
         tab1, tab2 = st.tabs(["Login", "Register"])
@@ -162,10 +165,7 @@ def login_app():
         with tab1:
             email = st.text_input("Email")
             password = st.text_input("Password", type="password")
-            st.sidebar.image('logo_ata.png', use_column_width=True)
-            for _ in range(22):
-                st.sidebar.write(' ')
-            st.sidebar.image('quadratechlogo.png', width=300)
+            
             if st.button("Login"):
                 if login_user(email, password):
                     st.rerun()  # Rerun the app to go to the home page
@@ -175,10 +175,6 @@ def login_app():
         with tab2:
             new_email = st.text_input("New Email")
             new_password = st.text_input("New Password", type="password")
-            st.sidebar.image('logo_ata.png', use_column_width=True)
-            for _ in range(22):
-                st.sidebar.write(' ')
-            st.sidebar.image('quadratechlogo.png', width=300)
             if st.button("Register"):
                 if register_user(new_email, new_password):
                     st.success("Registered and logged in successfully!")
