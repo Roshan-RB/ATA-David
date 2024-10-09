@@ -55,12 +55,6 @@ def main():
 	
 	import math
 
-	fa_css = '''
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-			<i class="fa-solid fa-bars";></i>
-			''' 
-	st.write(fa_css, unsafe_allow_html=True)
-
 	st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Dimension Manager**</span>', unsafe_allow_html=True)
 
 	

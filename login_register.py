@@ -155,7 +155,7 @@ def login_app():
         st.title("Welcome to ATA!")
         st.markdown("Please log in or register to access the app")
         st.sidebar.image('logo_ata.png', use_column_width=True)
-        for _ in range(22):
+        for _ in range(40):
             st.sidebar.write(' ')
         st.sidebar.image('quadratechlogo.png', width=300)
         # st.sidebar.image('Quadratech.png', use_column_width=True)
