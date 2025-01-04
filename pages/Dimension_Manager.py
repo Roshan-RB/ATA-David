@@ -5,7 +5,7 @@ import fitz  # PyMuPDF
 import tempfile
 import os
 import PIL
-from PIL import Image
+from PIL import Image, ImageDraw
 from io import BytesIO
 from PIL import ImageDraw
 import numpy as np
@@ -24,6 +24,7 @@ import re
 
 
 #Testing 20.06
+#st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Crop Assist**</span>', unsafe_allow_html=True)
 
 # Testing
 def main():
@@ -31,6 +32,15 @@ def main():
 		cred = credentials.Certificate('serviceAccountkey.json')
 		firebase_admin.initialize_app(cred)
 	
+	if 'selected_dimesions' not in st.session_state:
+		st.session_state.selected_dimesions = 0  
+		
+	fa_css = '''
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <i class="fa-solid fa-bars";></i>
+    ''' 
+	st.write(fa_css, unsafe_allow_html=True)
+
 	db = firestore.client()
 	
 	
@@ -44,6 +54,9 @@ def main():
 	from streamlit_image_coordinates import streamlit_image_coordinates
 	
 	import math
+
+	st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Dimension Manager**</span>', unsafe_allow_html=True)
+
 	
 	def rotated_coordinates(x, y, first_image_height):
 		"""
@@ -79,12 +92,19 @@ def main():
 			st.write("No image found in session state.")
 
 		if "ZeichnungsNr" in st.session_state:
-				ZeichnungsNr = st.session_state.ZeichnungsNr
+			ZeichnungsNr = st.session_state.ZeichnungsNr
+		if "cropped_image" in st.session_state:
+			cropped_image = st.session_state.cropped_image
+
+
 	
 		scale_str = st.select_slider(
-			"Select scaling factor to downsize the image",
+			"Use the slider to adjust the image size to your preference",
 			options=["1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7","7.5", "8", "8.5","9","9.5","10"])
 		scale = float(scale_str)
+
+		st.warning('Click in this order: Red, then Blue')
+		st.warning('Click only on dimensions, avoiding special characters')
 		
 		if image_with_boxes is not None:
 			#print('I entered loop 1')
@@ -92,13 +112,13 @@ def main():
 			new_width_scaled = height/scale
 			value = streamlit_image_coordinates(image_with_boxes, width = (width/scale))
 		else:
-			st.write("No image found in session state.")
+			st.write("Cropped image not found")
 		
 		#st.write("My favorite color is", scale)
 		if image_with_boxes_rotated is not None:
 			pass
 		else:
-			st.write("No image found in session state.")
+			st.write("Cropped image not found")
 			
 		def point_in_box(x,y,box,scale):
 			p0,p1,p2,p3 = box
@@ -121,11 +141,8 @@ def main():
 		try:
 
 			dimension = []
-			global text1 
-			text1 = 0
-
-			
-			
+			#global text1 
+			#text1 = 0
 
 			if "bounds" in st.session_state:
 				#st.write('I entered text 1')
@@ -135,26 +152,59 @@ def main():
 					st.session_state.temp = []
 				if "dimension" not in st.session_state:
 					st.session_state.dimension = []
+				# Initialize highlighted coordinates storage
+				if "highlighted_coords" not in st.session_state:
+					st.session_state.highlighted_coords = []
 
-			
-				
+				cropped_image_highlighted = st.session_state.image_with_boxes
+				#print(type(cropped_image_highlighted))
+				cropped_image_highlighted_np = np.array(cropped_image_highlighted)
+				total_dimensions = len(bounds)
 				for bound in bounds :
-					box = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]
-					
-					
+					box = [bound[0][0], bound[0][1], bound[0][2], bound[0][3]]		
 					#st.write(bound[0])
 					if value is not None:
 						#st.write('i am trying to read non rotated image')
 						if point_in_box(x,y,box,scale):
+							try:
+								p0, p1, p2, p3 = bound[0]
+								# Draw bounding box using OpenCV
+								# Store the coordinates
+								st.session_state.highlighted_coords.append((p0, p1, p2, p3))
+
+								# Draw bounding box using OpenCV
+								for coords in st.session_state.highlighted_coords:
+									cv2.line(cropped_image_highlighted_np, coords[0], coords[1], (0, 255, 0), 5)
+									cv2.line(cropped_image_highlighted_np, coords[1], coords[2], (0, 255, 0), 5)
+									cv2.line(cropped_image_highlighted_np, coords[2], coords[3], (0, 255, 0), 5)
+									cv2.line(cropped_image_highlighted_np, coords[3], coords[0], (0, 255, 0), 5)
+									#st.write(len(bounds))
+								st.session_state.selected_dimesions += 1
+								#st.markdown(f'**Percentage of selected Dimensions: {st.session_state.selected_dimesions / total_dimensions}**')
+								st.markdown(f'<i class="fa-solid fa-cube" style="margin-right: 10px; font-size: 20px;"></i> <span style="font-size: 24px; color: #3573b3;">**Selected Dimensions**</span>', unsafe_allow_html=True)
+								cropped_image_highlighted = Image.fromarray(cropped_image_highlighted_np)
+								with st.expander('The previously selected dimesnions are'):
+									st.image(cropped_image_highlighted)
+							except Exception as e:
+								st.write(e)
+							global text1
 							text1 = bound[1]
-
 							
+			if total_dimensions > 0:
+				percentage_selected = (st.session_state.selected_dimesions/ total_dimensions) * 100
+			else:
+				percentage_selected = 0
+			st.sidebar.markdown(f'**Percentage of selected dimensions: {percentage_selected:.2f}%**')
 
+			# Add a progress bar
+			progress = st.sidebar.progress(0)
+			progress.progress(int(percentage_selected))
 
 				
+
 			dimension_rotated = []
-			global text2 
-			text2 = 0
+			#global text2 
+			#text2 = 0
 			if "bounds_rotated" in st.session_state:
 				#st.write('I entered text 2')
 				bounds_rotated = st.session_state.bounds_rotated
@@ -169,6 +219,7 @@ def main():
 					if value is not None:
 						#st.write('i am trying to read rotated image')
 						if point_in_box(x1,y1,box_rotated,scale):
+							global text2
 							text2 = bound[1]
 							##st.write(text2)
 				#st.write(text1,text2)
@@ -207,8 +258,7 @@ def main():
 					st.session_state.dimension.append(st.session_state.temp[:])
 					st.session_state.temp = []
 				#st.write(st.session_state.dimension)           
-				st.warning('Please click in the following order: Red , Blue')
-				st.warning('Please click only on dimensions and not on special characters')
+				
 
 				
 				if st.session_state.dimension:
@@ -226,9 +276,59 @@ def main():
 					part_name = st.sidebar.text_input("Part Name:")
 					if part_name: 
 						st.sidebar.write(f"Part Name entered: {part_name}")
-					st.sidebar.data_editor(df[1:], num_rows = "dynamic")
-					
-				
+					st.sidebar.data_editor(df, num_rows = "dynamic")
+					if "finalize_database" not in st.session_state:
+						#st.write('I entered text 2')
+						st.session_state.finalize_database = False
+
+					def click_button():
+						st.session_state.finalize_database = True
+
+					st.sidebar.button('Finalize Database', on_click=click_button)
+					if st.session_state.finalize_database: 
+						st.dataframe(df)
+						if "upload_button" not in st.session_state:
+							#st.write('I entered text 2')
+							st.session_state.upload_button = False
+
+						def click_button():
+							st.session_state.upload_button = True
+
+						st.button("Upload to Database",on_click=click_button)
+						try: 
+							if st.session_state.upload_button:
+									if st.session_state.dimension:
+										#st.write('Ienterd 1')
+
+										# Convert dataframe to a list of dictionaries
+										data_to_upload = df.to_dict(orient='records')
+
+										#for record in data_to_upload:
+											#record['part_name'] = part_name
+										if part_name: 
+											data_to_upload[0]['part_name'] = part_name
+										#st.write('Ienterd 2')
+										# Use the file name as the collection name if it's defined
+										if 'ZeichnungsNr' in st.session_state and st.session_state.ZeichnungsNr:
+											#st.write('Ienterd 3')
+											collection_name = st.session_state.ZeichnungsNr
+											# Reference to the Firestore collection
+											collection_ref = db.collection(collection_name)
+
+											# Upload each row to the Firestore collection
+											for record in data_to_upload:
+												#st.write('Ienterd 4')
+												collection_ref.add(record)
+											#st.write('Ienterd 5')
+											st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
+										else:
+											st.warning("No file name found for the collection!")
+
+									else:
+										st.warning("No data to upload!")
+						except Exception as e:
+							print(e)
+
 		except Exception as e:
 
 			print('The error for non rotated image is:',str(e))
@@ -241,43 +341,6 @@ def main():
 
 	# st.write(f"Zeichnungs- Nr.: {st.session_state.ZeichnungsNr}")
 
-	# Button to upload data to Firebase
-	if st.button("Upload to Database"):
-		if st.session_state.dimension:
-			# Convert dataframe to a list of dictionaries
-			data_to_upload = df.to_dict(orient='records')
-
-			#for record in data_to_upload:
-				#record['part_name'] = part_name
-			if part_name: 
-				data_to_upload[0]['part_name'] = part_name
-
-			# Use the file name as the collection name if it's defined
-			if 'ZeichnungsNr' in st.session_state and st.session_state.ZeichnungsNr:
-				collection_name = st.session_state.ZeichnungsNr
-				# Reference to the Firestore collection
-				collection_ref = db.collection(collection_name)
-
-				# Upload each row to the Firestore collection
-				for record in data_to_upload:
-					collection_ref.add(record)
-
-				st.success(f"Data uploaded to Firebase successfully under collection '{collection_name}'!")
-			else:
-				st.warning("No file name found for the collection!")
-		else:
-			st.warning("No data to upload!")
-
-	#if collection_name:
-		#st.subheader(f"Data from Collection: '{collection_name}'")
-		#collection_ref = db.collection(collection_name)
-		#docs = collection_ref.stream()  # Get all documents in the collection
-		#collection_data = [doc.to_dict() for doc in docs]  # Convert documents to dictionary
-		#if collection_data:
-			#df = pd.DataFrame(collection_data)
-			#st.dataframe(df)
-		#else:
-			#st.write("No data found in the selected collection.")
     
 
 if __name__ == "__main__":
